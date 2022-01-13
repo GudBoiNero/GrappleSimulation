@@ -12,10 +12,15 @@ var dir : Vector2
 var retreating : bool
 var hooked : bool
 
+var player_bounds := CircleShape2D.new()
+
 func _ready():
 	dir = to_local(target).normalized()
 
 func _physics_process(delta):
+	$PlayerBounds/Bounds.shape = player_bounds
+	player_bounds.radius = latched_dist
+	
 	if dist >= max_dist: retreating = true
 	
 	$Sprite.look_at(player.position)
@@ -41,8 +46,7 @@ func _on_Collider_body_entered(body):
 	if retreating: return
 	print("Hooked On")
 	hooked = true
-	latched_dist = dist
-
+	latched_dist = player.position.distance_to(position)
 
 func _on_RetreatingCollider_body_entered(body):
 	if body.is_in_group("player") and retreating and !hooked:

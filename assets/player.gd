@@ -50,7 +50,6 @@ func _physics_process(delta):
 			pass
 	
 	if is_instance_valid(current_hook):
-		
 		$RopeLine.points[1] = to_local(current_hook.position)
 		
 		if not current_hook.get("player_pos") == null:

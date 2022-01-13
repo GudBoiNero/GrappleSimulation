@@ -34,5 +34,9 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RetreatingCollider"]
 shape = SubResource( 3 )
 
+[node name="PlayerBounds" type="Area2D" parent="."]
+
+[node name="Bounds" type="CollisionShape2D" parent="PlayerBounds"]
+
 [connection signal="body_entered" from="Collider" to="." method="_on_Collider_body_entered"]
 [connection signal="body_entered" from="RetreatingCollider" to="." method="_on_RetreatingCollider_body_entered"]
